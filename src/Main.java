@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         institution institution = new institution("Aitu", "Mangilik el 51", "+77777777777");
 
-        student student1 = new student("Bekzat", "Abilkhayev", 18, "SE-2501", 1);
+        student student1 = new student("Bek", "Abilkhayev", 18, "SE-2501", 1);
         student student2 = new student("Alina", "Aitmukhamet", 17, "SE-2501", 1);
         student student3 = new student("Sherkhan", "Amangeldi", 18, "SE-2501", 1);
         student student4 = new student("ARUZHAN", "BOLATOVA", 18, "SE-2501", 1);;
