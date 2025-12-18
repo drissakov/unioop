@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class institution{
@@ -6,6 +7,7 @@ public class institution{
     private String institutionAddress;
     private String institutionPhone;
     private List<student> students;
+    private List<teacher> teachers;
 
     institution(String institutionName,String institutionAddress,String institutionPhone){
         this.institutionName=institutionName;
@@ -42,5 +44,13 @@ public class institution{
     }
     public void setStudents(List<student> students) {
         this.students = students;
+    }
+
+    public void setTeachers(List<teacher> teachers) {
+        this.teachers = new ArrayList<>();
+    }
+
+    public List<teacher> getTeachers() {
+       return teachers;
     }
 }

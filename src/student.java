@@ -2,10 +2,9 @@ public class student{
     private String firstName;
     private String lastName;
     private int age;
-    private String group;          // Группа
-    private int course;            // Курс (1–4)
+    private String group;
+    private int course;
     private double averageGrade;
-    private institution institution;
 
     student(String firstName, String lastName, int age, String group, int course){
         this.firstName = firstName;
@@ -33,9 +32,7 @@ public class student{
     public void setAverageGrade(double averageGrade) {
         this.averageGrade = averageGrade;
     }
-    public void setInstitution(institution institution) {
-        this.institution = institution;
-    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -53,8 +50,5 @@ public class student{
     }
     public double getAverageGrade() {
         return averageGrade;
-    }
-    public institution getInstitution() {
-        return institution;
     }
 }

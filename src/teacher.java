@@ -1,19 +1,19 @@
+import java.util.List;
+
 public class teacher{
     private String firstName;
     private String lastName;
-    private int age;
-    private String subject;        // Предмет
-    private int experienceYears;   // Стаж
-    private double salary;
+    private String subject;
+    private int experienceYears;
     private institution institution;
 
-    teacher(String firstName, String lastName, int age, String subject, int experienceYears, double salary) {
+    private List<group> groups;
+
+    teacher(String firstName, String lastName, String subject, int experienceYears) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
         this.subject = subject;
         this.experienceYears = experienceYears;
-        this.salary = salary;
     }
 
     public void  setFirstName(String firstName){
@@ -28,12 +28,6 @@ public class teacher{
     public String getLastName(){
         return lastName;
     }
-    public void setAge(int age){
-        this.age=age;
-    }
-    public int getAge(){
-        return age;
-    }
     public void setSubject(String subject){
         this.subject=subject;
     }
@@ -45,12 +39,6 @@ public class teacher{
     }
     public int getExperienceYears(){
         return experienceYears;
-    }
-    public void setSalary(double salary){
-        this.salary=salary;
-    }
-    public double getSalary(){
-        return salary;
     }
     public void setInstitution(institution institution){
         this.institution=institution;
