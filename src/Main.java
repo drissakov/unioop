@@ -27,6 +27,6 @@ public class Main {
         }
 
         System.out.println("\nSearch by name:");
-        System.out.println(university.getRepository().findByName("Alex"));
+        System.out.println(university.getRepository().findByName("Alex")); //message to check commit
     }
 }
