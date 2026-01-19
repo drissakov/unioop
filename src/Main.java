@@ -1,32 +1,84 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Main {
+
     public static void main(String[] args) {
 
-        Institution university = new Institution("My University");
+        // CREATE
+        try (Connection conn = testDB.getConnection()) {
 
-        university.addPerson(new Student("Alex", 19, "CS-01"));
-        university.addPerson(new Student("Maria", 21, "CS-02"));
-        university.addPerson(new Teacher("Dr. Brown", 45, "OOP"));
-        university.addPerson(new Teacher("Prof. Smith", 50, "Math"));
+            PreparedStatement insert =
+                    conn.prepareStatement(
+                            "INSERT INTO students (name, age, group_name) VALUES (?, ?, ?)"
+                    );
 
-        System.out.println("All people:");
-        for (Person p : university.getRepository().getAll()) {
-            System.out.println(p);
+            insert.setString(1, "Alex");
+            insert.setInt(2, 19);
+            insert.setString(3, "CS-01");
+            insert.executeUpdate();
+
+            System.out.println("INSERT done");
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        System.out.println("\nFiltered (age >= 21):");
-        for (Person p : university.getRepository().filterByAge(21)) {
-            System.out.println(p);
+        // READ
+        try (Connection conn = testDB.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM students")) {
+
+            System.out.println("READ:");
+
+            while (rs.next()) {
+                System.out.println(
+                        rs.getInt("id") + " | " +
+                                rs.getString("name") + " | " +
+                                rs.getInt("age") + " | " +
+                                rs.getString("group_name")
+                );
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        System.out.println("\nSorted by name:");
-        for (Person p : university.getRepository().sortByName()) {
-            System.out.println(p);
+        // UPDATE
+        try (Connection conn = testDB.getConnection()) {
+
+            PreparedStatement update =
+                    conn.prepareStatement(
+                            "UPDATE students SET age = ? WHERE name = ?"
+                    );
+
+            update.setInt(1, 20);
+            update.setString(2, "Alex");
+            update.executeUpdate();
+
+            System.out.println("UPDATE done");
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        System.out.println("\nSearch by name:");
-        System.out.println(university.getRepository().findByName("Alex")); //message to check commit
+        // DELETE
+        try (Connection conn = testDB.getConnection()) {
+
+            PreparedStatement delete =
+                    conn.prepareStatement(
+                            "DELETE FROM students WHERE name = ?"
+                    );
+
+            delete.setString(1, "Alex");
+            delete.executeUpdate();
+
+            System.out.println("DELETE done");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
