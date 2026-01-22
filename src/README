@@ -1,0 +1,37 @@
+# Educational Institution Management System
+
+This project is a simple Java application created as part of university Object-Oriented Programming assignments.
+
+## Assignment 2
+In the second assignment, an object-oriented model was implemented using Java.
+
+Main concepts:
+- Abstraction using an abstract class `Person`
+- Inheritance (`Student`, `Teacher`)
+- Encapsulation with private fields and getters
+- Polymorphism
+- Data pool for storing objects with filtering, searching and sorting
+- Overridden `toString()`, `equals()` and `hashCode()` methods
+
+## Assignment 3
+In the third assignment, database functionality was added.
+
+Features:
+- PostgreSQL database
+- Two tables: `students` and `teachers`
+- JDBC connection
+- Basic CRUD operations (create, read, update, delete)
+
+Database interaction is demonstrated separately without modifying the existing object-oriented model.
+
+## Technologies
+- Java
+- PostgreSQL
+- JDBC
+- IntelliJ IDEA
+
+## How to run
+1. Create a PostgreSQL database named `university`
+2. Create tables `students` and `teachers`
+3. Update database credentials in `DatabaseConnection.java`
+4. Run the database demo class
