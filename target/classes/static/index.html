@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management</title>
+    <style>
+        body {
+        <h1>HELLO FRONTEND</h1>
+
+        font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background: #eee;
+        }
+
+        input, button {
+            padding: 8px;
+            margin: 5px 0;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .form {
+            background: white;
+            padding: 15px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Student Management</h1>
+
+<h2>Students</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+    </tr>
+    </thead>
+    <tbody id="students-table"></tbody>
+</table>
+
+<h2>Add Student</h2>
+<div class="form">
+    <input type="text" id="name" placeholder="Name"><br>
+    <input type="number" id="age" placeholder="Age"><br>
+    <button onclick="addStudent()">Add</button>
+</div>
+
+<script>
+    const API_URL = "http://localhost:8080/students";
+
+    function loadStudents() {
+        fetch(API_URL)
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById("students-table");
+                table.innerHTML = "";
+
+                data.forEach(student => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${student.id}</td>
+                        <td>${student.name}</td>
+                        <td>${student.age}</td>
+                    `;
+                    table.appendChild(row);
+                });
+            });
+    }
+
+    function addStudent() {
+        const name = document.getElementById("name").value;
+        const age = document.getElementById("age").value;
+
+        fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, age })
+        }).then(() => {
+            loadStudents();
+            document.getElementById("name").value = "";
+            document.getElementById("age").value = "";
+        });
+    }
+
+    loadStudents();
+</script>
+
+</body>
+</html>
